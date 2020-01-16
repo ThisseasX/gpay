@@ -8,16 +8,22 @@ const Main = () => {
   const [payments, setPayments] = useState([]);
 
   useEffect(() => {
-    socket.on('PAYMENTS_FETCHED', payload => {
-      setPayments(payload);
-    });
+    setPayments([
+      // { amount: 50, requested: { _seconds: 1000 }, finalized: { _seconds: 1000 } },
+      { amount: 50, requested: { _seconds: 1000 } },
+    ]);
 
-    socket.on('DEBT_FETCHED', payload => {
-      setDebt(payload);
-    });
+    setDebt({ amount: 200 });
+    // socket.on('PAYMENTS_FETCHED', payload => {
+    //   setPayments(payload);
+    // });
 
-    socket.emit('FETCH_PAYMENTS');
-    socket.emit('FETCH_DEBT');
+    // socket.on('DEBT_FETCHED', payload => {
+    //   setDebt(payload);
+    // });
+
+    // socket.emit('FETCH_PAYMENTS');
+    // socket.emit('FETCH_DEBT');
   }, []);
 
   return (

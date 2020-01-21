@@ -1,12 +1,26 @@
 import React from 'react';
+import { theme } from 'style';
 import { Main } from 'components';
-import classes from './style.module.sass';
+import {
+  ThemeProvider,
+  CssBaseline,
+  Grid,
+  Typography,
+  Box,
+} from '@material-ui/core';
 
 const App = () => (
-  <div className={classes.appContainer}>
-    <div className={classes.title}>G-Pay</div>
-    <Main />
-  </div>
+  <ThemeProvider theme={theme}>
+    <CssBaseline />
+    <Box pt={4} clone>
+      <Grid container direction={'column'} alignItems={'center'}>
+        <Typography variant={'h1'} gutterBottom>
+          G-Pay
+        </Typography>
+        <Main />
+      </Grid>
+    </Box>
+  </ThemeProvider>
 );
 
 export default App;

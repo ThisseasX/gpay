@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { socket } from 'services';
-import { Payment, Debt } from 'components';
-import classes from './style.module.sass';
+import { Payment } from 'components';
+import { Container, Grid, Typography, Box } from '@material-ui/core';
 
 const Main = () => {
   const [debt, setDebt] = useState(0);
@@ -10,7 +10,13 @@ const Main = () => {
   useEffect(() => {
     setPayments([
       // { amount: 50, requested: { _seconds: 1000 }, finalized: { _seconds: 1000 } },
-      { amount: 50, requested: { _seconds: 1000 } },
+      { id: '1', amount: 50, requested: { _seconds: 1000 } },
+      {
+        id: '2',
+        amount: 50,
+        requested: { _seconds: 1000 },
+        finalized: { _seconds: 1000 },
+      },
     ]);
 
     setDebt({ amount: 200 });
@@ -27,12 +33,20 @@ const Main = () => {
   }, []);
 
   return (
-    <div className={classes.mainContainer}>
-      <Debt debt={debt} />
-      {payments.map(payment => (
-        <Payment key={payment.id} payment={payment} />
-      ))}
-    </div>
+    <Container maxWidth={'xs'}>
+      <Box px={2} mb={2}>
+        <Typography align={'center'} variant={'h4'}>
+          Remaining: {debt.amount}€
+        </Typography>
+      </Box>
+      <Grid container direction={'column'} spacing={2}>
+        {payments.map(payment => (
+          <Grid item>
+            <Payment key={payment.id} payment={payment} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };
 

@@ -57,11 +57,6 @@ const Main = () => {
           {debt}€
         </Typography>
       </Box>
-      <Box mt={4} mb={1}>
-        <Typography align={'center'} variant={'h5'}>
-          Pay now
-        </Typography>
-      </Box>
       <PayNowCard debt={debt} handleSubmit={handleSubmit} />
       <Box mt={4} mb={4}>
         <Grid container alignItems={'center'}>

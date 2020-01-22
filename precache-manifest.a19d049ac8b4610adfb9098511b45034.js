@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5a8e9f0f7c765f6047a2404c57b4a4f8",
+    "revision": "fd5b41ea9a1fef5859b2518993284dac",
     "url": "/gpay/index.html"
   },
   {
@@ -12,8 +12,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/gpay/static/js/2.1f8c5f64.chunk.js.LICENSE"
   },
   {
-    "revision": "40aef50f2ff51682977e",
-    "url": "/gpay/static/js/main.a7dc9113.chunk.js"
+    "revision": "82697b81ab34ea12a9cc",
+    "url": "/gpay/static/js/main.3248a10c.chunk.js"
   },
   {
     "revision": "9032ac247bcde2a8f41c",

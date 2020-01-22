@@ -1,11 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { socket } from 'services';
-import { Payment } from 'components';
-import { Container, Grid, Typography, Box } from '@material-ui/core';
+import { PayNowCard, PaymentHistoryCard } from 'components';
+import { Container, Grid, Typography, Divider, Box } from '@material-ui/core';
 
 const Main = () => {
   const [debt, setDebt] = useState(0);
   const [payments, setPayments] = useState([]);
+
+  const handleSubmit = useCallback(v => {
+    console.log(v);
+  }, []);
 
   useEffect(() => {
     setPayments([
@@ -19,7 +23,7 @@ const Main = () => {
       },
     ]);
 
-    setDebt({ amount: 200 });
+    setDebt(200);
     // socket.on('PAYMENTS_FETCHED', payload => {
     //   setPayments(payload);
     // });
@@ -36,13 +40,27 @@ const Main = () => {
     <Container maxWidth={'xs'}>
       <Box px={2} mb={2}>
         <Typography align={'center'} variant={'h4'}>
-          Remaining: {debt.amount}€
+          Remaining: {debt}€
         </Typography>
       </Box>
-      <Grid container direction={'column'} spacing={2}>
+      <Box mt={4} mb={1}>
+        <Typography align={'center'} variant={'h5'}>
+          Pay now
+        </Typography>
+      </Box>
+      <PayNowCard debt={debt} handleSubmit={handleSubmit} />
+      <Box mt={4}>
+        <Divider />
+      </Box>
+      <Box mt={2} mb={1}>
+        <Typography align={'center'} variant={'h5'}>
+          History
+        </Typography>
+      </Box>
+      <Grid container direction={'column'} spacing={2} wrap={'nowrap'}>
         {payments.map(payment => (
-          <Grid item>
-            <Payment key={payment.id} payment={payment} />
+          <Grid key={payment.id} item>
+            <PaymentHistoryCard payment={payment} />
           </Grid>
         ))}
       </Grid>

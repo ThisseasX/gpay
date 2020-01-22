@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { DateInfo } from 'components';
 import { Paper, Grid, Typography, Box } from '@material-ui/core';
 
-const PaymentCard = ({ payment: { amount, requested, finalized } }) => (
+const PaymentHistoryCard = ({
+  payment: { amount = 0, requested = {}, finalized = {} } = {},
+}) => (
   <Box border={1} clone>
     <Paper>
       <Box py={1} px={2} borderBottom={1}>
@@ -24,4 +26,4 @@ const PaymentCard = ({ payment: { amount, requested, finalized } }) => (
   </Box>
 );
 
-export default PaymentCard;
+export default memo(PaymentHistoryCard);

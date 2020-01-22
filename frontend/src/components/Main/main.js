@@ -13,17 +13,23 @@ const Main = () => {
 
   useEffect(() => {
     setPayments([
-      // { amount: 50, requested: { _seconds: 1000 }, finalized: { _seconds: 1000 } },
-      { id: '1', amount: 50, requested: { _seconds: 1000 } },
+      {
+        id: '1',
+        amount: 50,
+        requested: { _seconds: new Date().valueOf() / 1000 },
+        finalized: { _seconds: new Date().valueOf() / 1000 },
+      },
       {
         id: '2',
         amount: 50,
-        requested: { _seconds: 1000 },
-        finalized: { _seconds: 1000 },
+        requested: { _seconds: new Date().valueOf() / 1000 },
+        finalized: { _seconds: new Date().valueOf() / 1000 },
       },
     ]);
 
     setDebt(200);
+
+    // Will unmock later
     // socket.on('PAYMENTS_FETCHED', payload => {
     //   setPayments(payload);
     // });
@@ -38,9 +44,17 @@ const Main = () => {
 
   return (
     <Container maxWidth={'xs'}>
-      <Box px={2} mb={2}>
-        <Typography align={'center'} variant={'h4'}>
-          Remaining: {debt}€
+      <Box px={2} mb={2} textAlign={'center'}>
+        <Typography
+          align={'center'}
+          color={'textSecondary'}
+          variant={'h4'}
+          component={'span'}
+        >
+          Remaining:&nbsp;
+        </Typography>
+        <Typography variant={'h3'} component={'span'}>
+          {debt}€
         </Typography>
       </Box>
       <Box mt={4} mb={1}>
@@ -49,13 +63,22 @@ const Main = () => {
         </Typography>
       </Box>
       <PayNowCard debt={debt} handleSubmit={handleSubmit} />
-      <Box mt={4}>
-        <Divider />
-      </Box>
-      <Box mt={2} mb={1}>
-        <Typography align={'center'} variant={'h5'}>
-          History
-        </Typography>
+      <Box mt={4} mb={4}>
+        <Grid container alignItems={'center'}>
+          <Grid item xs>
+            <Divider />
+          </Grid>
+          <Box px={2} clone>
+            <Grid item>
+              <Typography align={'center'} variant={'h5'}>
+                History
+              </Typography>
+            </Grid>
+          </Box>
+          <Grid item xs>
+            <Divider />
+          </Grid>
+        </Grid>
       </Box>
       <Grid container direction={'column'} spacing={2} wrap={'nowrap'}>
         {payments.map(payment => (

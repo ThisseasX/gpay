@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { socket } from 'services';
+// import { socket } from 'services';
 import { PayNowCard, PaymentHistoryCard } from 'components';
 import { Container, Grid, Typography, Divider, Box } from '@material-ui/core';
 
